@@ -28,5 +28,4 @@ public class byggnadsobjekt {
     public String getLocation() {return this.location;}
     public Integer getCost() {return this.cost;}
 
-
 }

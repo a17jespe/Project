@@ -3,13 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.project.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/button_displayobject"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/button_displayobject"
         app:showAsAction="never" />
     <item
-        android:id="@+id/about"
+        android:id="@+id/button_about"
         android:orderInCategory="100"
-        android:title="@string/about"
+        android:title="@string/button_about"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/button_newobject"
+        android:orderInCategory="100"
+        android:title="@string/button_newobject"
         app:showAsAction="never" />
 </menu>

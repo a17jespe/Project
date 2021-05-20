@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         objektArrayList = new ArrayList<>();
         objektAdapter = new ArrayAdapter<>(this, R.layout.layoutlistobjekts,R.id.listtextView , objektArrayList);
 
-        ListView thelistview = (ListView) findViewById(R.id.my_listview);
+        ListView thelistview = findViewById(R.id.my_listview);
         thelistview.setAdapter(objektAdapter);
 
         thelistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -64,17 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 String company = objektArrayList.get(position).getCompany();
                 String message = "The object " +  name + " has a size of " + size + ", a cost of " + cost + ", is located at"+ location +", and is owned by "+ company;
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
 
@@ -155,10 +144,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.button_displayobject) {
+            new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
+        }
+        if (id == R.id.button_about) {
             return true;
         }
-        if (id == R.id.about) {
+
+        if (id == R.id.button_newobject) {
             return true;
         }
         return super.onOptionsItemSelected(item);
