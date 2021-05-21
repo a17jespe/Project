@@ -1,6 +1,7 @@
 package com.example.project;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -33,8 +34,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<byggnadsobjekt> objektArrayList = new ArrayList<>();
-    ArrayAdapter<byggnadsobjekt> objektAdapter;
+    private ArrayList<byggnadsobjekt> objektArrayList = new ArrayList<>();
+    private ArrayAdapter<byggnadsobjekt> objektAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,25 +49,38 @@ public class MainActivity extends AppCompatActivity {
         objektAdapter = new ArrayAdapter<>(this, R.layout.textformating,R.id.textformat, objektArrayList);
 
 
-        ListView thelistview = findViewById(R.id.list);
-        thelistview.setAdapter(objektAdapter);
+        ListView thelist = findViewById(R.id.list);
+        thelist.setAdapter(objektAdapter);
 
-        thelistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        thelist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 String name = objektArrayList.get(position).getName();
-                Integer size = objektArrayList.get(position).getSize();
+                String size = objektArrayList.get(position).getSize();
                 String location = objektArrayList.get(position).getLocation();
                 String login = objektArrayList.get(position).getLogin();
                 String ID = objektArrayList.get(position).getID();
-                Integer cost = objektArrayList.get(position).getCost();
+                String cost = objektArrayList.get(position).getCost();
                 String company = objektArrayList.get(position).getCompany();
-                String message = "The object " +  name + " is located at " + location + ", has a size of " + size + ", costs "+ cost +", is owned by the company "+ company+" and were created by " + login;
+                String message = "The object " +  name +", "+ID+ ", is located at " + location + ", has a size of " + size + ", costs "+ cost +", is owned by the company "+ company+" and were created by " + login;
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
             }
         });
 
 //        new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
+                    for (int i = 0;i < 10; i++) {
+                    String name = "name"+i;
+                    String location = "location"+i;
+                    Integer size = i;
+                    String company = "company"+i;
+                    Integer cost = i;
+                    String id = "ID"+i;
+                    String login = "type"+i;
+                    Log.e("Stuff: ", name);
+                    objektArrayList.add(new byggnadsobjekt(name, size, location, company, cost, id, login));
+                    }
+                    objektAdapter.notifyDataSetChanged();
+
     }
 
 
@@ -137,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
 //            } catch (JSONException e) {
 //                Log.e("JSON Stuff: ",e.getMessage());
 //            }
+
 //        }
 //
 //    }
@@ -152,16 +167,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.button_displayobject) {
-
-        }
         if (id == R.id.button_about) {
-
+            Intent intent = new Intent(MainActivity.this, About.class);
+            startActivity(intent);
         }
 
-        if (id == R.id.get_data) {
-
-        }
         return super.onOptionsItemSelected(item);
     }
 

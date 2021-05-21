@@ -28,9 +28,9 @@ public class byggnadsobjekt {
 
     public String getCompany() {return company;}
     public String getName() {return name;}
-    public int getSize() {return size;}
+    public String getSize() {return String.valueOf(size);}
     public String getLocation() {return location;}
-    public Integer getCost() {return cost;}
+    public String getCost() {return String.valueOf(cost);}
     public String getID() {return ID;}
     public String getLogin() {return Login;}
 
