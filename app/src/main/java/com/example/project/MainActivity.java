@@ -41,11 +41,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
-    private ArrayList<byggnadsobjekt> objektArrayList = new ArrayList<>();
-    private ArrayAdapter<byggnadsobjekt> objektAdapter;
-
+    ArrayList<byggnadsobjekt> objektArrayList = new ArrayList<>();
+    ArrayAdapter<byggnadsobjekt> objektAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
 //        Log.e("Second:", String.valueOf(secondFragment));
 
         objektArrayList = new ArrayList<>();
-        objektAdapter = new ArrayAdapter<>(this, R.layout.layoutlistobjekts,R.id.listtextView , objektArrayList);
+        objektAdapter = new ArrayAdapter<>(this, R.layout.fragment_first_list,R.id.listcontent , objektArrayList);
+
+
 
 //        ListView thelistview = findViewById(R.id.my_listview);
 //        thelistview.setAdapter(objektAdapter);
@@ -84,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
     }
+
+
 
 
     private class JsonTask extends AsyncTask<String, String, String> {

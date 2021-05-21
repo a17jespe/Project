@@ -8,7 +8,7 @@ public class byggnadsobjekt {
     private String company;
     private Integer cost;
 
-    public byggnadsobjekt(String name, int size, String location, String company, Integer cost) {
+    public byggnadsobjekt(String name, Integer size, String location, String company, Integer cost) {
         this.name = name;
         this.size = size;
         this.location = location;
