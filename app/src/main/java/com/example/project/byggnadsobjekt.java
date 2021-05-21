@@ -7,13 +7,17 @@ public class byggnadsobjekt {
     private String location;
     private String company;
     private Integer cost;
+    private String ID;
+    private String Login;
 
-    public byggnadsobjekt(String name, Integer size, String location, String company, Integer cost) {
+    public byggnadsobjekt(String name, Integer size, String location, String company, Integer cost, String ID, String Login) {
         this.name = name;
         this.size = size;
         this.location = location;
         this.company = company;
         this.cost = cost;
+        this.Login = ID;
+        this.ID = Login;
     }
 
 
