@@ -11,13 +11,13 @@ public class byggnadsobjekt {
     private String Login;
 
     public byggnadsobjekt(String name, Integer size, String location, String company, Integer cost, String ID, String Login) {
-        this.name = name;
-        this.size = size;
-        this.location = location;
-        this.company = company;
-        this.cost = cost;
-        this.Login = ID;
-        this.ID = Login;
+        name = name;
+        size = size;
+        location = location;
+        company = company;
+        cost = cost;
+        String login = Login;
+        String id = ID;
     }
 
 
@@ -26,13 +26,13 @@ public class byggnadsobjekt {
         return name;
     }
 
-    public String getCompany() {return this.company;}
-    public String getName() {return this.name;}
-    public int getSize() {return this.size;}
-    public String getLocation() {return this.location;}
-    public Integer getCost() {return this.cost;}
-    public String getID() {return this.ID;}
-    public String getLogin() {return this.Login;}
+    public String getCompany() {return company;}
+    public String getName() {return name;}
+    public int getSize() {return size;}
+    public String getLocation() {return location;}
+    public Integer getCost() {return cost;}
+    public String getID() {return ID;}
+    public String getLogin() {return Login;}
 
 
 }

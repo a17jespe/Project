@@ -1,5 +1,6 @@
 package com.example.project;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -11,7 +12,11 @@ import android.util.Log;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,76 +48,98 @@ public class MainActivity extends AppCompatActivity {
         objektAdapter = new ArrayAdapter<>(this, R.layout.textformating,R.id.textformat, objektArrayList);
 
 
+        ListView thelistview = findViewById(R.id.list);
+        thelistview.setAdapter(objektAdapter);
+
+        thelistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                String name = objektArrayList.get(position).getName();
+                Integer size = objektArrayList.get(position).getSize();
+                String location = objektArrayList.get(position).getLocation();
+                String login = objektArrayList.get(position).getLogin();
+                String ID = objektArrayList.get(position).getID();
+                Integer cost = objektArrayList.get(position).getCost();
+                String company = objektArrayList.get(position).getCompany();
+                String message = "The object " +  name + " is located at " + location + ", has a size of " + size + ", costs "+ cost +", is owned by the company "+ company+" and were created by " + login;
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+//        new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
     }
 
-    private class JsonTask extends AsyncTask<String, String, String> {
 
-        private HttpURLConnection connection = null;
-        private BufferedReader reader = null;
 
-        protected String doInBackground(String... params) {
-            try {
-                URL url = new URL(params[0]);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.connect();
-
-                InputStream stream = connection.getInputStream();
-                reader = new BufferedReader(new InputStreamReader(stream));
-
-                StringBuilder builder = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null && !isCancelled()) {
-                    builder.append(line).append("\n");
-                }
-                return builder.toString();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (connection != null) {
-                    connection.disconnect();
-                }
-                try {
-                    if (reader != null) {
-                        reader.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            return null;
-
-        }
-
-        @Override
-        protected void onPostExecute(String json) {
-            Log.e("QUERY ANSWER: ", json);
-            try {
-                objektAdapter.clear();
-                JSONArray jsonArray = new JSONArray(json);
-                for (int i=0; i < jsonArray.length(); i++) // Goes through i in array based on array length.
-                {
-                    JSONObject oneObject = jsonArray.getJSONObject(i); //Assigns object to variable based on current object in the array jsonArray.
-                    String name = oneObject.getString("name");
-                    String location = oneObject.getString("location");
-                    Integer size= oneObject.getInt("size");
-                    String company = oneObject.getString("company");
-                    Integer cost = oneObject.getInt("cost");
-                    String id = oneObject.getString("ID");
-                    String login = oneObject.getString("type");
-                    objektArrayList.add(new byggnadsobjekt(name, size, location, company, cost, id, login));
-                    Log.e("Json: ", name+size+location+company+cost+id+login);
-                }
-
-                objektAdapter.notifyDataSetChanged();
-
-            } catch (JSONException e) {
-                Log.e("JSON Stuff: ",e.getMessage());
-            }
-        }
-
-    }
+//    @SuppressLint("StaticFieldLeak")
+//    private class JsonTask extends AsyncTask<String, String, String> {
+//
+//        private HttpURLConnection connection = null;
+//        private BufferedReader reader = null;
+//
+//        protected String doInBackground(String... params) {
+//            try {
+//                URL url = new URL(params[0]);
+//                connection = (HttpURLConnection) url.openConnection();
+//                connection.connect();
+//
+//                InputStream stream = connection.getInputStream();
+//                reader = new BufferedReader(new InputStreamReader(stream));
+//
+//                StringBuilder builder = new StringBuilder();
+//                String line;
+//                while ((line = reader.readLine()) != null && !isCancelled()) {
+//                    builder.append(line).append("\n");
+//                }
+//                return builder.toString();
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } finally {
+//                if (connection != null) {
+//                    connection.disconnect();
+//                }
+//                try {
+//                    if (reader != null) {
+//                        reader.close();
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            return null;
+//
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String json) {
+//            Log.e("QUERY ANSWER: ", json);
+//            try {
+//                objektAdapter.clear();
+//                JSONArray jsonArray = new JSONArray(json);
+//                for (int i=0; i < jsonArray.length(); i++) // Goes through i in array based on array length.
+//                {
+//                    JSONObject oneObject = jsonArray.getJSONObject(i); //Assigns object to variable based on current object in the array jsonArray.
+//                    String name = oneObject.getString("name");
+//                    String location = oneObject.getString("location");
+//                    Integer size= oneObject.getInt("size");
+//                    String company = oneObject.getString("company");
+//                    Integer cost = oneObject.getInt("cost");
+//                    String id = oneObject.getString("ID");
+//                    String login = oneObject.getString("type");
+//                    objektArrayList.add(new byggnadsobjekt(name, size, location, company, cost, id, login));
+//                    Log.e("Json: ", name+size+location+company+cost+id+login);
+//                }
+//
+//                objektAdapter.notifyDataSetChanged();
+//
+//            } catch (JSONException e) {
+//                Log.e("JSON Stuff: ",e.getMessage());
+//            }
+//        }
+//
+//    }
 
 
     @Override
@@ -134,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.get_data) {
 
-            new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
         }
         return super.onOptionsItemSelected(item);
     }
