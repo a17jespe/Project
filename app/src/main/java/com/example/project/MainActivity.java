@@ -159,21 +159,23 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
+    //            new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.button_displayobject) {
-            new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
-            Log.e("Main-Display", "");
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment, FirstFragment.class, null)
+                    .commit();
         }
         if (id == R.id.button_about) {
-            Log.e("About","");
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment, SecondFragment.class, null)
+                    .commit();
         }
 
-        if (id == R.id.button_newobject) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 

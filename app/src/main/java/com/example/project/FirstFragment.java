@@ -35,13 +35,13 @@ public class FirstFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static FirstFragment newInstance(int columnCount) {
-        FirstFragment fragment = new FirstFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    public static FirstFragment newInstance(int columnCount) {
+//        FirstFragment fragment = new FirstFragment();
+//        Bundle args = new Bundle();
+//        args.putInt(ARG_COLUMN_COUNT, columnCount);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,13 +56,13 @@ public class FirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_first, container, false);
-        view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });
+//        view.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                NavHostFragment.findNavController(FirstFragment.this)
+//                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+//            }
+//        });
 
         // Set the adapter
 //        if (view instanceof RecyclerView) {
