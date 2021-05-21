@@ -14,6 +14,9 @@
     <string name="text_about">
 
         This application is a lightweight presentation of different objects owned by companies.
+        The general idea is to get an understand as to what assets the different companies and the potential value of them.
+        This can be potentially be useful to buyers of real-estate.
+
         There are some miscellaneous information about them, while the presentation is simple, I did have plans to incorporate recyclerview for optimized navigation.
         Expansion of this app can be made in aspects regarding editing and adding of new entries.
 
