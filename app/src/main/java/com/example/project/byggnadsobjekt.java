@@ -20,7 +20,6 @@ public class byggnadsobjekt {
         id = ID;
     }
 
-
     @Override
     public String toString(){
         return name;
