@@ -67,93 +67,94 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
-                    for (int i = 0;i < 10; i++) {
-                    String name = "name"+i;
-                    String location = "location"+i;
-                    Integer size = i;
-                    String company = "company"+i;
-                    Integer cost = i;
-                    String id = "ID"+i;
-                    String login = "type"+i;
-                    objektArrayList.add(new byggnadsobjekt(name, size, location, company, cost, id, login));
-                    }
-        objektAdapter.notifyDataSetChanged();
+           new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
+
+//                    for (int i = 0;i < 10; i++) {
+//                    String name = "name"+i;
+//                    String location = "location"+i;
+//                    Integer size = i;
+//                    String company = "company"+i;
+//                    Integer cost = i;
+//                    String id = "ID"+i;
+//                    String login = "type"+i;
+//                    objektArrayList.add(new byggnadsobjekt(name, size, location, company, cost, id, login));
+//                    }
+//        objektAdapter.notifyDataSetChanged();
 
     }
 
 
 
-//    @SuppressLint("StaticFieldLeak")
-//    private class JsonTask extends AsyncTask<String, String, String> {
-//
-//        private HttpURLConnection connection = null;
-//        private BufferedReader reader = null;
-//
-//        protected String doInBackground(String... params) {
-//            try {
-//                URL url = new URL(params[0]);
-//                connection = (HttpURLConnection) url.openConnection();
-//                connection.connect();
-//
-//                InputStream stream = connection.getInputStream();
-//                reader = new BufferedReader(new InputStreamReader(stream));
-//
-//                StringBuilder builder = new StringBuilder();
-//                String line;
-//                while ((line = reader.readLine()) != null && !isCancelled()) {
-//                    builder.append(line).append("\n");
-//                }
-//                return builder.toString();
-//            } catch (MalformedURLException e) {
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            } finally {
-//                if (connection != null) {
-//                    connection.disconnect();
-//                }
-//                try {
-//                    if (reader != null) {
-//                        reader.close();
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            return null;
-//
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String json) {
-//            Log.e("QUERY ANSWER: ", json);
-//            try {
-//                objektAdapter.clear();
-//                JSONArray jsonArray = new JSONArray(json);
-//                for (int i=0; i < jsonArray.length(); i++) // Goes through i in array based on array length.
-//                {
-//                    JSONObject oneObject = jsonArray.getJSONObject(i);
-//                    String name = oneObject.getString("name");
-//                    String location = oneObject.getString("location");
-//                    Integer size= oneObject.getInt("size");
-//                    String company = oneObject.getString("company");
-//                    Integer cost = oneObject.getInt("cost");
-//                    String id = oneObject.getString("ID");
-//                    String login = oneObject.getString("type");
-//                    objektArrayList.add(new byggnadsobjekt(name, size, location, company, cost, id, login));
-//                    Log.e("Json: ", name+size+location+company+cost+id+login);
-//                }
-//
-//                objektAdapter.notifyDataSetChanged();
-//
-//            } catch (JSONException e) {
-//                Log.e("JSON Stuff: ",e.getMessage());
-//            }
+    @SuppressLint("StaticFieldLeak")
+    private class JsonTask extends AsyncTask<String, String, String> {
 
-//        }
-//
-//    }
+        private HttpURLConnection connection = null;
+        private BufferedReader reader = null;
+
+        protected String doInBackground(String... params) {
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+                InputStream stream = connection.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                StringBuilder builder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null && !isCancelled()) {
+                    builder.append(line).append("\n");
+                }
+                return builder.toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+
+        }
+
+        @Override
+        protected void onPostExecute(String json) {
+            Log.e("QUERY ANSWER: ", json);
+            try {
+                objektAdapter.clear();
+                JSONArray jsonArray = new JSONArray(json);
+                for (int i=0; i < jsonArray.length(); i++) // Goes through i in array based on array length.
+                {
+                    JSONObject oneObject = jsonArray.getJSONObject(i);
+                    String name = oneObject.getString("name");
+                    String location = oneObject.getString("location");
+                    Integer size= oneObject.getInt("size");
+                    String company = oneObject.getString("company");
+                    Integer cost = oneObject.getInt("cost");
+                    String id = oneObject.getString("ID");
+                    String login = oneObject.getString("type");
+                    objektArrayList.add(new byggnadsobjekt(name, size, location, company, cost, id, login));
+                    Log.e("Json: ", name+size+location+company+cost+id+login);
+                }
+
+                objektAdapter.notifyDataSetChanged();
+
+            } catch (JSONException e) {
+                Log.e("JSON Stuff: ",e.getMessage());
+            }
+
+        }
+
+    }
 
 
     @Override
