@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 //                JSONArray jsonArray = new JSONArray(json);
 //                for (int i=0; i < jsonArray.length(); i++) // Goes through i in array based on array length.
 //                {
-//                    JSONObject oneObject = jsonArray.getJSONObject(i); //Assigns object to variable based on current object in the array jsonArray.
+//                    JSONObject oneObject = jsonArray.getJSONObject(i);
 //                    String name = oneObject.getString("name");
 //                    String location = oneObject.getString("location");
 //                    Integer size= oneObject.getInt("size");

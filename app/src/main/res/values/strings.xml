@@ -11,6 +11,16 @@
     <string name="button_get_data">Get new data</string>
     <string name="title_activity_about">About</string>
 
-    <string name="text_about"></string>
+    <string name="text_about">
+
+        This application is a lightweight presentation of different objects owned by companies.
+        There are some miscellaneous information about them, while the presentation is simple, I did have plans to incorporate recyclerview for optimized navigation.
+        Expansion of this app can be made in aspects regarding editing and adding of new entries.
+
+
+
+
+
+</string>
 
 </resources>
