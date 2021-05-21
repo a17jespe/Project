@@ -12,4 +12,9 @@
         android:orderInCategory="100"
         android:title="@string/button_about"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/get_data"
+        android:orderInCategory="100"
+        android:title="@string/button_about"
+        app:showAsAction="never" />
 </menu>

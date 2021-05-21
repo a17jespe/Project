@@ -52,35 +52,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FirstFragment firstFragment = (FirstFragment) getSupportFragmentManager().findFragmentById(R.id.FirstFragment);
-//        SecondFragment secondFragment = (SecondFragment) getSupportFragmentManager().findFragmentById(R.id.SecondFragment);
-//
-//        NavHostFragment.findNavController(firstFragment);
-//
-//
-//        Log.e("First:", String.valueOf(firstFragment));
-//        Log.e("Second:", String.valueOf(secondFragment));
-
         objektArrayList = new ArrayList<>();
         objektAdapter = new ArrayAdapter<>(this, R.layout.fragment_first_list,R.id.listcontent , objektArrayList);
 
-
-
-//        ListView thelistview = findViewById(R.id.my_listview);
-//        thelistview.setAdapter(objektAdapter);
-//
-//        thelistview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-//                String name = objektArrayList.get(position).getName();
-//                Integer size = objektArrayList.get(position).getSize();
-//                String location = objektArrayList.get(position).getLocation();
-//                Integer cost = objektArrayList.get(position).getCost();
-//                String company = objektArrayList.get(position).getCompany();
-//                String message = "The object " +  name + " has a size of " + size + ", a cost of " + cost + ", is located at"+ location +", and is owned by "+ company;
-//                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
     }
 
@@ -127,29 +101,29 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-//        @Override
-//        protected void onPostExecute(String json) {
-//            Log.e("QUERY ANSWER: ", json);
-//            try {
-//                objektAdapter.clear();
-//                JSONArray jsonArray = new JSONArray(json);
-//                for (int i=0; i < jsonArray.length(); i++) // Goes through i in array based on array length.
-//                {
-//                    JSONObject oneObject = jsonArray.getJSONObject(i); //Assigns object to variable based on current object in the array jsonArray.
-//                    String name = oneObject.getString("name");
-//                    String location = oneObject.getString("location");
-//                    Integer size= oneObject.getInt("size");
-//                    String company = oneObject.getString("company");
-//                    Integer cost = oneObject.getInt("cost");
-//                    objektArrayList.add(new byggnadsobjekt(name, size, location, company, cost)); //Adds a new mountain in arraylist with name, location and height (int) values.
-//                }
-//
-//                objektAdapter.notifyDataSetChanged();
-//
-//            } catch (JSONException e) {
-//                Log.e("JSON Stuff: ",e.getMessage());
-//            }
-//        }
+        @Override
+        protected void onPostExecute(String json) {
+            Log.e("QUERY ANSWER: ", json);
+            try {
+                objektAdapter.clear();
+                JSONArray jsonArray = new JSONArray(json);
+                for (int i=0; i < jsonArray.length(); i++) // Goes through i in array based on array length.
+                {
+                    JSONObject oneObject = jsonArray.getJSONObject(i); //Assigns object to variable based on current object in the array jsonArray.
+                    String name = oneObject.getString("name");
+                    String location = oneObject.getString("location");
+                    Integer size= oneObject.getInt("size");
+                    String company = oneObject.getString("company");
+                    Integer cost = oneObject.getInt("cost");
+                    objektArrayList.add(new byggnadsobjekt(name, size, location, company, cost));
+                }
+
+                objektAdapter.notifyDataSetChanged();
+
+            } catch (JSONException e) {
+                Log.e("JSON Stuff: ",e.getMessage());
+            }
+        }
 
     }
 
@@ -160,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-    //            new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -175,6 +149,10 @@ public class MainActivity extends AppCompatActivity {
             fragmentManager.beginTransaction()
                     .replace(R.id.nav_host_fragment, SecondFragment.class, null)
                     .commit();
+        }
+
+        if (id == R.id.get_data) {
+            new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
         }
 
         return super.onOptionsItemSelected(item);
