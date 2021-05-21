@@ -31,5 +31,8 @@ public class byggnadsobjekt {
     public int getSize() {return this.size;}
     public String getLocation() {return this.location;}
     public Integer getCost() {return this.cost;}
+    public String getID() {return this.ID;}
+    public String getLogin() {return this.Login;}
+
 
 }

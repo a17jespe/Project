@@ -3,28 +3,15 @@ package com.example.project;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavHostController;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
-import android.view.View;
 
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,13 +40,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         objektArrayList = new ArrayList<>();
-        objektAdapter = new ArrayAdapter<>(this, R.layout.fragment_first,R.id.listcontent , objektArrayList);
+        objektAdapter = new ArrayAdapter<>(this, R.layout.textformating,R.id.textformat, objektArrayList);
 
 
     }
-
-
-
 
     private class JsonTask extends AsyncTask<String, String, String> {
 
@@ -143,10 +127,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.button_displayobject) {
 
-
-
         }
-
         if (id == R.id.button_about) {
 
         }
