@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-public class SecondFragment extends Fragment {
+class SecondFragment extends Fragment {
+
+
 
     @Override
     public View onCreateView(
@@ -31,4 +33,6 @@ public class SecondFragment extends Fragment {
             }
         });
     }
+
+
 }

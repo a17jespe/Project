@@ -8,6 +8,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
@@ -40,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//    private ArrayList<byggnadsobjekt> objektArrayList = new ArrayList<>();
-//    private ArrayAdapter<byggnadsobjekt> objektAdapter;
+    private ArrayList<byggnadsobjekt> objektArrayList = new ArrayList<>();
+    private ArrayAdapter<byggnadsobjekt> objektAdapter;
 
 
     @Override
@@ -52,10 +55,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-//        objektArrayList = new ArrayList<>();
-//        objektAdapter = new ArrayAdapter<>(this, R.layout.layoutlistobjekts,R.id.listtextView , objektArrayList);
+//        FirstFragment firstFragment = (FirstFragment) getSupportFragmentManager().findFragmentById(R.id.FirstFragment);
+//        SecondFragment secondFragment = (SecondFragment) getSupportFragmentManager().findFragmentById(R.id.SecondFragment);
 //
+//        NavHostFragment.findNavController(firstFragment);
+//
+//
+//        Log.e("First:", String.valueOf(firstFragment));
+//        Log.e("Second:", String.valueOf(secondFragment));
+
+        objektArrayList = new ArrayList<>();
+        objektAdapter = new ArrayAdapter<>(this, R.layout.layoutlistobjekts,R.id.listtextView , objektArrayList);
+
 //        ListView thelistview = findViewById(R.id.my_listview);
 //        thelistview.setAdapter(objektAdapter);
 //
@@ -75,45 +86,46 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    private class JsonTask extends AsyncTask<String, String, String> {
-//
-//        private HttpURLConnection connection = null;
-//        private BufferedReader reader = null;
-//
-//        protected String doInBackground(String... params) {
-//            try {
-//                URL url = new URL(params[0]);
-//                connection = (HttpURLConnection) url.openConnection();
-//                connection.connect();
-//
-//                InputStream stream = connection.getInputStream();
-//                reader = new BufferedReader(new InputStreamReader(stream));
-//
-//                StringBuilder builder = new StringBuilder();
-//                String line;
-//                while ((line = reader.readLine()) != null && !isCancelled()) {
-//                    builder.append(line).append("\n");
-//                }
-//                return builder.toString();
-//            } catch (MalformedURLException e) {
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            } finally {
-//                if (connection != null) {
-//                    connection.disconnect();
-//                }
-//                try {
-//                    if (reader != null) {
-//                        reader.close();
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            return null;
-//        }
-//
+    private class JsonTask extends AsyncTask<String, String, String> {
+
+        private HttpURLConnection connection = null;
+        private BufferedReader reader = null;
+
+        protected String doInBackground(String... params) {
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+                InputStream stream = connection.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                StringBuilder builder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null && !isCancelled()) {
+                    builder.append(line).append("\n");
+                }
+                return builder.toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+
+        }
+
 //        @Override
 //        protected void onPostExecute(String json) {
 //            Log.e("QUERY ANSWER: ", json);
@@ -137,7 +149,8 @@ public class MainActivity extends AppCompatActivity {
 //                Log.e("JSON Stuff: ",e.getMessage());
 //            }
 //        }
-//    }
+
+    }
 
 
     @Override
@@ -145,19 +158,20 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-
     }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.button_displayobject) {
-            // new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
-            return true;
-
+            new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=a17jespe");
+            Log.e("Main-Display", "");
         }
         if (id == R.id.button_about) {
-            return true;
+            Log.e("About","");
         }
 
         if (id == R.id.button_newobject) {
