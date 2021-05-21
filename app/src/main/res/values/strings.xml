@@ -12,5 +12,6 @@
     <string name="button_displayobject">Display objects</string>
     <string name="button_about">Om appen</string>
     <string name="button_get_data">Get new data</string>
+    <string name="title_activity_about">About</string>
 
 </resources>
