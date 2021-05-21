@@ -7,17 +7,17 @@ public class byggnadsobjekt {
     private String location;
     private String company;
     private Integer cost;
-    private String ID;
-    private String Login;
+    private String id;
+    private String login;
 
-    public byggnadsobjekt(String name, Integer size, String location, String company, Integer cost, String ID, String Login) {
-        name = name;
-        size = size;
-        location = location;
-        company = company;
-        cost = cost;
-        String login = Login;
-        String id = ID;
+    public byggnadsobjekt(String Name, Integer Size, String Location, String Company, Integer Cost, String ID, String Login) {
+        name = Name;
+        size = Size;
+        location = Location;
+        company = Company;
+        cost = Cost;
+        login = Login;
+        id = ID;
     }
 
 
@@ -31,8 +31,8 @@ public class byggnadsobjekt {
     public String getSize() {return String.valueOf(size);}
     public String getLocation() {return location;}
     public String getCost() {return String.valueOf(cost);}
-    public String getID() {return ID;}
-    public String getLogin() {return Login;}
+    public String getID() {return id;}
+    public String getLogin() {return login;}
 
 
 }

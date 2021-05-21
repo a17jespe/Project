@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                     Integer cost = i;
                     String id = "ID"+i;
                     String login = "type"+i;
-                    Log.e("Stuff: ", name);
                     objektArrayList.add(new byggnadsobjekt(name, size, location, company, cost, id, login));
                     }
                     objektAdapter.notifyDataSetChanged();
